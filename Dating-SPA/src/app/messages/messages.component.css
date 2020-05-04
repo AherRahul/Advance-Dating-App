@@ -1,0 +1,10 @@
+img {
+    max-height: 50px;
+    border: 2px solid rgb(168, 165, 165);
+    border-radius: 25px;
+    display: inline;
+}
+
+.container {
+    height: 450px;
+}

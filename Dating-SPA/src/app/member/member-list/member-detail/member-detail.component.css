@@ -1,0 +1,28 @@
+.img-thumbnail {
+    margin: 25px;
+    width: 85%;
+    height: 85%;
+}
+
+.card-body {
+    padding: 0 25px;
+}
+
+.card-footer {
+    padding: 10px 15px;
+    background-color: #fff;
+    border-top: none;
+}
+
+.gallery-wrapper {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.ngx-gallery {
+    display: inline-block;
+    margin-bottom: 20px;
+    /* width: 500px;
+       height: 400px;
+       border-color: #4a89ff;*/
+}

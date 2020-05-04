@@ -1,0 +1,59 @@
+<div class="card">
+    <div class="card-body">
+        <div *ngIf="messages?.length == 0">
+            <p>No Messages yet... Say hi my using the message box..</p>
+        </div>
+
+        <ul class="chat">
+            <li *ngFor="let messgae of messages">
+                <!-- to them -->
+                <div *ngIf="messgae.senderId == receipientId">
+                    <span class="chat-img float-left mr-1">
+                        <img src="{{messgae.senderPhotoUrl}}" alt="{{messgae.senderKnownAs}}" class="rounded-circle">
+                    </span>
+
+                    <div class="chat-body">
+                        <div class="header">
+                            <strong class="primary-font">{{messgae.senderKnownAs}}</strong>
+                            <small class="text-muted float-right">
+                                <span class="fa fa-clock-o mr-1"> {{messgae.messageSent | timeago}}</span>
+                            </small>
+                        </div>
+                        <p>{{messgae.content}}</p>
+                    </div>
+                </div>
+
+                <!-- to me -->
+                <div *ngIf="messgae.senderId != receipientId">
+                    <span class="chat-img float-right">
+                        <img src="{{messgae.senderPhotoUrl}}" alt="{{messgae.senderKnownAs}}" class="rounded-circle">
+                    </span>
+
+                    <div class="chat-body">
+                        <div class="header">
+                            <small class="text-muted">
+                                <span class="fa fa-clock-o mr-1"> {{messgae.messageSent | timeago}}</span>
+                                <span *ngIf="!messgae.isRead" class="text-danger mr-1"> (unread)</span>
+                                <span *ngIf="messgae.isRead" class="text-success mr-1"> (read {{messgae.dateRead | timeago}})</span>
+                            </small>
+
+                            <strong class="primary-font float-right mt-3 mr-1">{{messgae.senderKnownAs}}</strong>
+                        </div>
+                        <p>{{messgae.content}}</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card-footer">
+        <form #messageForm="ngForm" (ngSubmit)='messageForm.valid && sendMessage()'>
+            <div class="input-group">
+                <input type="text" [(ngModel)]="newMessage.content" name="content" required class="form-control input-sm" placeholder="send a private messgae">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" [disabled]="!messageForm.valid">Send</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

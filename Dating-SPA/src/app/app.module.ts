@@ -6,16 +6,16 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
-import { TabsModule, PaginationModule } from 'ngx-bootstrap';
+import { TabsModule, PaginationModule, ModalModule } from 'ngx-bootstrap';
 import { TimeagoModule } from 'ngx-timeago';
 import { ButtonsModule } from 'ngx-bootstrap';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { MemberListComponent } from './member/member-list/member-list.component';
@@ -39,6 +39,11 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { ListResolver } from './_resolvers/list.resolver';
 import { MessagesResolver } from './_resolvers/message.resolver';
 import { MemberMessagesComponent } from './member/member-list/member-messages/member-messages.component';
+import { HasRoleDirective } from './_directives/hasRole.directive';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
+import { AdminService } from './_services/admin.service';
+import { ModelComponent } from './admin/model/model.component';
 
 
 export function tokenGetter() {
@@ -57,7 +62,12 @@ export function tokenGetter() {
       MemberDetailComponent,
       MemberEditComponent,
       PhotEditorComponent,
-      MemberMessagesComponent
+      MemberMessagesComponent,
+      AdminPanelComponent,
+      HasRoleDirective,
+      UserManagementComponent,
+      PhotoManagementComponent,
+      ModelComponent
    ],
    imports: [
       BrowserModule,
@@ -72,6 +82,7 @@ export function tokenGetter() {
       PaginationModule.forRoot(),
       BsDatepickerModule.forRoot(),
       RouterModule.forRoot(appRoutes),
+      ModalModule.forRoot(),
       NgxGalleryModule,
       JwtModule.forRoot({
          config: {
@@ -95,7 +106,11 @@ export function tokenGetter() {
       MemberEditResolver,
       PreventUnsavedChanges,
       ListResolver,
-      MessagesResolver
+      MessagesResolver,
+      AdminService
+   ],
+   entryComponents: [
+      ModelComponent
    ],
    bootstrap: [
       AppComponent

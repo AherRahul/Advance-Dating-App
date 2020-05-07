@@ -36,5 +36,7 @@ namespace Dating.API.Dtos
             Created = DateTime.Now;
             LastActive = DateTime.Now;
         }
+
+        public string UserRole {get; set;} = "Member";
     }
 }
